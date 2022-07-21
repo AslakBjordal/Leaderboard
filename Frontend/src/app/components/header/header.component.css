@@ -1,0 +1,26 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+h1{
+    background-image: linear-gradient(to top, #1100ff 0%, #3c97ff 100%);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 2rem;
+}
+
+.btns{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: fit-content;
+    gap: 20px;
+    
+}

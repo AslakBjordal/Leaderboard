@@ -1,0 +1,26 @@
+.matchitem{
+    width: 75%;
+    color: white;
+    background-color: #303035;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+}
+
+#player1{
+    width: 80px;
+
+}
+
+#player2{
+    width: 80px;
+}
+
+#date{
+    width: 80px;
+}
+
+#winner{
+    width: 80px;
+}
