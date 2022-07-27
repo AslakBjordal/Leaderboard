@@ -21,7 +21,7 @@ public class UsersController : ControllerBase
         _db = config;
     }
 
-    [HttpGet("Users")]
+    [HttpGet]
     public IEnumerable<UserProfile> GetUsers()
     {
         using var connection = new SqliteConnection(_db.Name);
@@ -29,7 +29,7 @@ public class UsersController : ControllerBase
         return users;    
     }
 
-    [HttpPost("Users")]
+    [HttpPost]
     public bool CreateUsers(UserProfile user)
     {
         using var connection = new SqliteConnection(_db.Name);

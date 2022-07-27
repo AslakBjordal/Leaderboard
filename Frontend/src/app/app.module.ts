@@ -8,6 +8,7 @@ import { ButtonComponent } from './components/button/button.component';
 import { MatchesComponent } from './components/matches/matches.component';
 import { MatchesItemComponent } from './components/matches-item/matches-item.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,14 +16,15 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HeaderComponent,
     ButtonComponent,
     MatchesComponent,
-    MatchesItemComponent
+    MatchesItemComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
