@@ -1,6 +1,6 @@
-<div class="matchitem">
-    <p id="player1">{{match.player1.toUpperCase()}}</p>
-    <p id="player2">{{match.player2.toUpperCase()}}</p>
-    <p id="date">{{match.date}}</p>
-    <p id="winner">{{match.winner.toUpperCase()}}</p>
+<div class="matchitem" >
+    <p id="player1">{{ (getUser(match.winner) | async )?.toUpperCase()}}</p>
+    <p id="player2">{{ (getUser(match.loser) | async)?.toUpperCase() }}</p>
+    <p id="date">{{ match.date | date: 'd MMM, HH'}}</p>
+    <p id="winner">{{(getUser(match.winner)| async)?.toUpperCase()}}</p>
 </div>

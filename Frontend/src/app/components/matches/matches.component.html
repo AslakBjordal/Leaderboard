@@ -1,4 +1,7 @@
-<app-matches-item 
-id="matchbox" 
-*ngFor="let Match of matches" [match]="Match">
+<div *ngFor="let match of matches$ | async">
+    <app-matches-item 
+    id="matchbox" 
+    [match]="match"
+    >
 </app-matches-item>
+</div> 

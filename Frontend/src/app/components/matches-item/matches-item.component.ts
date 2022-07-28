@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { map } from 'rxjs';
 import { Match } from 'src/app/models/match.model';
+import { UserprofilesService } from 'src/app/services/api/userprofiles.service';
 
 @Component({
   selector: 'app-matches-item',
@@ -8,8 +10,16 @@ import { Match } from 'src/app/models/match.model';
 })
 export class MatchesItemComponent implements OnInit {
   @Input() match: Match;
+  users$ = this.userService.getUsers();
 
-  constructor() {}
+  constructor(private userService: UserprofilesService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.match);
+  }
+
+  getUser = (userId: number) =>
+    this.users$.pipe(
+      map((users) => users.find((user) => user.id === userId)?.userName)
+    );
 }

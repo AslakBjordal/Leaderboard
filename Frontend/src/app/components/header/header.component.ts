@@ -20,9 +20,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  newMatch() {
-    console.log('new match started');
-  }
+  newMatch() {}
 
   logIn = () => {
     console.log('log in');
