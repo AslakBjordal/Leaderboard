@@ -1,0 +1,18 @@
+<h1 mat-dialog-title> Hello! </h1>
+<div mat-dialog-content style="display: flex; flex-direction: column">
+    <p>Please fill in Username and Password</p>
+    <mat-form-field apperance="fill" >
+        <mat-label> USERNAME</mat-label>
+        <input matInput [(ngModel)]="username">
+    </mat-form-field>
+    <mat-form-field apperance="fill" >
+        <mat-label> PASSWORD </mat-label>
+        <input matInput [(ngModel)]="password">
+    </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button (click="login" cdkFocusInitial>Login</button>
+    <button mat-button color="warn" [mat-dialog-close]="">Cancel</button>
+    <button mat-button (click)="register()">Register</button>
+</div>
