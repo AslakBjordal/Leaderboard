@@ -61,8 +61,8 @@ public class AuthenticationController : Controller
     {
       var claims = new[]
       {
-                new Claim("Id", res.Id.ToString()),
-            };
+        new Claim("Id", res.Id.ToString()),
+      };
       var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
       var authProps = new AuthenticationProperties
       {
@@ -71,6 +71,7 @@ public class AuthenticationController : Controller
         ExpiresUtc = DateTimeOffset.UtcNow.AddYears(100),
         AllowRefresh = true,
       };
+    Console.WriteLine(res.Id);
 
       await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProps);
     }

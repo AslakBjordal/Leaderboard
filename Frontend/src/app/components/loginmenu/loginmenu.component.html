@@ -7,12 +7,14 @@
     </mat-form-field>
     <mat-form-field apperance="fill" >
         <mat-label> PASSWORD </mat-label>
-        <input matInput [(ngModel)]="password">
+        <input type="password" matInput [(ngModel)]="password">
     </mat-form-field>
+    <mat-error *ngIf="error">Incorrect username or password</mat-error>
+
 </div>
 
 <div mat-dialog-actions>
-    <button mat-button (click="login" cdkFocusInitial>Login</button>
+    <button mat-button (click)="login()" cdkFocusInitial>Login</button>
     <button mat-button color="warn" [mat-dialog-close]="">Cancel</button>
     <button mat-button (click)="register()">Register</button>
 </div>

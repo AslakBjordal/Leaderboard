@@ -16,16 +16,17 @@ builder.Services.AddSingleton(new DatabaseConfig { Name = builder.Configuration[
 
 builder.Services.AddHostedService<DatabaseHostedService>();
 
-// builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
-// {
-//   options.LoginPath = new PathString("/Authentication/Login");
-//   options.SlidingExpiration = true;
-//   options.Events.OnRedirectToLogin = context =>
-//   {
-//     context.Response.StatusCode = 401;
-//     return Task.CompletedTask;
-//   };
-// });
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+{
+  options.Cookie.SameSite = SameSiteMode.None;
+  options.LoginPath = new PathString("/Authentication/Login");
+  options.SlidingExpiration = true;
+  options.Events.OnRedirectToLogin = context =>
+  {
+    context.Response.StatusCode = 401;
+    return Task.CompletedTask;
+  };
+});
 
 
 var app = builder.Build();
@@ -46,7 +47,7 @@ app.UseAuthentication();
 app.UseCors(builder =>
 {
   builder
-  .WithOrigins("http://localhost:4200", "http://localhost:11000")
+  .WithOrigins("https://localhost:4200")
   .AllowAnyHeader()
   .AllowCredentials()
   .AllowAnyMethod();

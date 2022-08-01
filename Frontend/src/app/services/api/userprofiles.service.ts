@@ -7,11 +7,15 @@ import { BaseApiService } from './base-api.service';
   providedIn: 'root',
 })
 export class UserprofilesService {
+  private fetchedUsers = false;
+  private users = new BehaviorSubject<UserProfile[]>([]);
+
+  private currentUser = new BehaviorSubject<UserProfile | undefined>(undefined);
+
   constructor(public baseApi: BaseApiService) {}
-  fetchedUsers = false;
-  users: BehaviorSubject<UserProfile[]> = new BehaviorSubject<UserProfile[]>(
-    []
-  );
+
+  setCurrentUser = (user: UserProfile) => this.currentUser.next(user);
+  getCurrentUser = () => this.currentUser;
 
   getUsers = (): BehaviorSubject<UserProfile[]> => {
     if (!this.fetchedUsers) {

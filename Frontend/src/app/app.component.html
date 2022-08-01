@@ -1,7 +1,15 @@
-<div class="container">
-  <app-header></app-header>
-  <h2>Previous Matches:</h2>
-  <app-matches></app-matches>
-</div>
+<mat-drawer-container autosize [hasBackdrop]="true">
+  <mat-drawer-content>
+    <mat-drawer class="sidenav" mode="over">
+      <header (sidenav)="sidenav.toggle()"></header>
+      drawer
+    </mat-drawer>
+    <div class="container">
+      <app-header></app-header>
+      <h2>Previous Matches:</h2>
+      <app-matches></app-matches>
+    </div>
+  </mat-drawer-content>
 
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+</mat-drawer-container>
