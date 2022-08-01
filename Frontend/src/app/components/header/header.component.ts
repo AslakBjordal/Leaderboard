@@ -12,7 +12,7 @@ import { SidenavService } from 'src/app/services/sidenav.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  @Output() sidenav: EventEmitter<any> = new EventEmitter();
+  menuOpen$ = this.sidenavService.getIsOpen();
 
   title: string = 'UIT 8BALL';
   loggedInUser: UserProfile | undefined;
@@ -20,7 +20,8 @@ export class HeaderComponent implements OnInit {
   constructor(
     auth: AuthenticationService,
     private users: UserprofilesService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private sidenavService: SidenavService,
   ) {
     auth.isLoggedIn().subscribe((res) => {
       console.log(res);
@@ -31,8 +32,9 @@ export class HeaderComponent implements OnInit {
     users.getUsers().subscribe((res) => console.log(res));
   }
 
-  toggleSideNav = () => {
-    this.sidenav.emit();
+  setMenuOpen = (open: boolean) => {
+    console.log(open);
+    this.sidenavService.setIsOpen(open);
   };
 
   ngOnInit(): void {}

@@ -8,11 +8,9 @@ import { MatSidenav } from '@angular/material/sidenav';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  @ViewChild('sidenav') public sidenav: MatSidenav;
+  menuOpen$ = this.sidenavService.getIsOpen();
 
   constructor(private sidenavService: SidenavService) {}
 
-  ngAfterViewInit(): void {
-    this.sidenavService.setSidenav(this.sidenav);
-  }
+  setMenuOpen = (open: boolean) => this.sidenavService.setIsOpen(open);
 }

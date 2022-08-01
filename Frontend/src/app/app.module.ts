@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SidenavService } from './services/sidenav.service';
+import { ReactiveComponentModule } from '@ngrx/component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { SidenavService } from './services/sidenav.service';
     FormsModule,
     MatButtonModule,
     MatSidenavModule,
+    ReactiveComponentModule,
   ],
   providers: [SidenavService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],

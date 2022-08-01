@@ -1,8 +1,7 @@
 <mat-drawer-container autosize [hasBackdrop]="true">
   <mat-drawer-content>
-    <mat-drawer class="sidenav" mode="over">
-      <header (sidenav)="sidenav.toggle()"></header>
-      drawer
+    <mat-drawer class="sidenav" mode="over" [opened]="menuOpen$ | async" (openedChange)="setMenuOpen($event)">
+      <header></header>
     </mat-drawer>
     <div class="container">
       <app-header></app-header>
