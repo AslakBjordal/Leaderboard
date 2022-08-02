@@ -1,8 +1,15 @@
 <mat-drawer-container autosize [hasBackdrop]="true">
+  <mat-drawer
+    class="sidenav"
+    mode="side"
+    position="end"
+    [opened]="menuOpen$ | async"
+    (openedChange)="setMenuOpen($event)"
+    ><p>Hello {{ currentUser }}</p>
+    <button mat-button>Stats</button>
+    <button mat-button (click)="this.logOut()">Log Out</button>
+  </mat-drawer>
   <mat-drawer-content>
-    <mat-drawer class="sidenav" mode="over" [opened]="menuOpen$ | async" (openedChange)="setMenuOpen($event)">
-      <header></header>
-    </mat-drawer>
     <div class="container">
       <app-header></app-header>
       <h2>Previous Matches:</h2>

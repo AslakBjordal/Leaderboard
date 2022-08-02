@@ -14,4 +14,6 @@ export class AuthenticationService {
 
   logIn = (user: UserProfile) =>
     this.baseApi.post<UserProfile>('Authentication/Login', user);
+
+  logOut = () => this.baseApi.post<UserProfile>('Authentication/Logout');
 }

@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
     auth: AuthenticationService,
     private users: UserprofilesService,
     public dialog: MatDialog,
-    private sidenavService: SidenavService,
+    private sidenavService: SidenavService
   ) {
     auth.isLoggedIn().subscribe((res) => {
       console.log(res);
