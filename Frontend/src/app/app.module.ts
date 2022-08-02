@@ -20,6 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SidenavService } from './services/sidenav.service';
 import { ReactiveComponentModule } from '@ngrx/component';
+import { NewmatchComponent } from './components/newmatch/newmatch.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ReactiveComponentModule } from '@ngrx/component';
     MatchesComponent,
     MatchesItemComponent,
     LoginMenuComponent,
+    NewmatchComponent,
   ],
   imports: [
     BrowserModule,

@@ -5,7 +5,10 @@
     position="end"
     [opened]="menuOpen$ | async"
     (openedChange)="setMenuOpen($event)"
-    ><p>Hello {{ currentUser }}</p>
+    ><p>
+      Hello {{ currentUser?.charAt(0)?.toUpperCase()
+      }}{{ currentUser?.slice(1) }}
+    </p>
     <button mat-button>Stats</button>
     <button mat-button (click)="this.logOut()">Log Out</button>
   </mat-drawer>

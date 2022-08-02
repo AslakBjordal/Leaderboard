@@ -5,6 +5,7 @@ import { LoginMenuComponent } from 'src/app/components/loginmenu/loginmenu.compo
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { UserProfile } from 'src/app/models/userprofile.model';
 import { SidenavService } from 'src/app/services/sidenav.service';
+import { NewmatchComponent } from '../newmatch/newmatch.component';
 
 @Component({
   selector: 'app-header',
@@ -39,7 +40,11 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  newMatch = () => {};
+  newMatch = (): void => {
+    this.dialog.open(NewmatchComponent, {
+      width: '500px',
+    });
+  };
 
   openDialog = (): void => {
     this.dialog.open(LoginMenuComponent, {

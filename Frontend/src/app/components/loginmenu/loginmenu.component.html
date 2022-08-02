@@ -1,20 +1,25 @@
-<h1 mat-dialog-title> Hello! </h1>
+<h1 mat-dialog-title>Hello!</h1>
 <div mat-dialog-content style="display: flex; flex-direction: column">
-    <p>Please fill in Username and Password</p>
-    <mat-form-field apperance="fill" >
-        <mat-label> USERNAME</mat-label>
-        <input matInput [(ngModel)]="username">
-    </mat-form-field>
-    <mat-form-field apperance="fill" >
-        <mat-label> PASSWORD </mat-label>
-        <input type="password" matInput [(ngModel)]="password">
-    </mat-form-field>
-    <mat-error *ngIf="error">Incorrect username or password</mat-error>
-
+  <p>Please fill in Username and Password</p>
+  <mat-form-field apperance="fill">
+    <mat-label> USERNAME</mat-label>
+    <input matInput [(ngModel)]="username" />
+  </mat-form-field>
+  <mat-form-field apperance="fill">
+    <mat-label> PASSWORD </mat-label>
+    <input type="password" matInput [(ngModel)]="password" />
+  </mat-form-field>
+  <mat-error *ngIf="error"
+    >Incorrect username or password, did you mean to register?</mat-error
+  >
+  <mat-error *ngIf="createError"
+    >This user already exists, try another name.</mat-error
+  >
+  <p *ngIf="created" style="color: green">User created :)</p>
 </div>
 
 <div mat-dialog-actions>
-    <button mat-button (click)="login()" cdkFocusInitial>Login</button>
-    <button mat-button color="warn" [mat-dialog-close]="">Cancel</button>
-    <button mat-button (click)="register()">Register</button>
+  <button mat-button (click)="login()" cdkFocusInitial>Login</button>
+  <button mat-button (click)="register()">Register</button>
+  <button mat-button color="warn" [mat-dialog-close]="">Cancel</button>
 </div>

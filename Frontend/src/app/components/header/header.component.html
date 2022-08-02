@@ -1,17 +1,25 @@
 <header>
   <h1>{{ title }}</h1>
   <div class="btns" *ngrxLet="menuOpen$ | async as open">
-    <app-button color="#1100ff" text="New Match" (btnClick)="newMatch()"></app-button>
+    <app-button
+      color="#1100ff"
+      text="New Match"
+      (btnClick)="newMatch()"
+    ></app-button>
 
     <app-button
       color="#1100ff"
       *ngIf="currentUser$ | async; else login"
-      [text]="(currentUser$ | async)!.userName"
+      [text]="(currentUser$ | async)!.userName | titlecase"
       (btnClick)="setMenuOpen(!open)"
     ></app-button>
 
     <ng-template #login>
-      <app-button color="#1100ff" text="Log In" (btnClick)="openDialog()"></app-button>
+      <app-button
+        color="#1100ff"
+        text="Log In"
+        (btnClick)="openDialog()"
+      ></app-button>
     </ng-template>
   </div>
 </header>

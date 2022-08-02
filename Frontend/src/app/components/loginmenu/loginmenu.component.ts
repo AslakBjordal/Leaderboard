@@ -12,7 +12,10 @@ import { UserprofilesService } from 'src/app/services/api/userprofiles.service';
 export class LoginMenuComponent {
   username: string;
   password: string;
+
   error = false;
+  createError = false;
+  created = false;
 
   constructor(
     private dialogRef: MatDialogRef<LoginMenuComponent>,
@@ -38,14 +41,21 @@ export class LoginMenuComponent {
           this.error = true;
         }
       });
-    // this.auth.login({username: this.username, password: this.password}).then((res) => {
-    //  Check if successfull and show error/success
-    // })
   }
 
   register() {
-    // this.auth.register({username: this.username, password: this.password}).then((res) => {
-    //  Check if successfull and show error/success
-    // })
+    this.userService
+      .createUser({
+        userName: this.username?.toLowerCase(),
+        password: this.password,
+      })
+      .subscribe((res) => {
+        if (res) {
+          this.created = true;
+          this.error = false;
+        } else {
+          this.createError = true;
+        }
+      });
   }
 }
