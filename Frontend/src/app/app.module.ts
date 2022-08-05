@@ -21,6 +21,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { SidenavService } from './services/sidenav.service';
 import { ReactiveComponentModule } from '@ngrx/component';
 import { NewmatchComponent } from './components/newmatch/newmatch.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { NewmatchComponent } from './components/newmatch/newmatch.component';
     MatButtonModule,
     MatSidenavModule,
     ReactiveComponentModule,
+    MatAutocompleteModule,
   ],
   providers: [SidenavService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
