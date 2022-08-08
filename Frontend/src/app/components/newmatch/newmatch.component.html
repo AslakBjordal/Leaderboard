@@ -1,43 +1,29 @@
 <h1 mat-dialog-title>Register a new match</h1>
-<div
-  mat-dialog-content
-  style="display: flex; flex-direction: column; justify-content: space-between"
->
+<div mat-dialog-content style="display: flex; flex-direction: column; justify-content: space-between">
   <p>Please write name of the winner and the loser</p>
 
   <form>
-  <mat-form-field apperance="fill" style="width: 100px">
-    <mat-label> Winner</mat-label>
-    <input
-      type="text"
-      matInput
-      [formControl]="myControl"
-      [matAutocomplete]="auto"
-    />
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let user of filteredUsers | async" [value]="winner">
-        {{ user }}
-      </mat-option>
+    <mat-form-field apperance="fill" style="width: 100px">
+      <mat-label>Winner</mat-label>
+      <input type="text" matInput [formControl]="winnerControl" [matAutocomplete]="autow" [value]="winner?.userName" />
+      <mat-autocomplete #autow="matAutocomplete" (optionSelected)="winner = $event.option.value">
+        <mat-option *ngFor="let user of filteredWinners | async" [value]="user">
+          {{ user.userName }}
+        </mat-option>
       </mat-autocomplete>
     </mat-form-field>
   </form>
 
   <form>
-  <mat-form-field apperance="fill" style="width: 100px">
-    <mat-label> Loser</mat-label>
-    <input
-      type="text"
-      matInput
-      [formControl]="myControl"
-      [matAutocomplete]="auto"
-    />
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let user of filteredUsers | async" [value]="loser">
-        {{ user }}
-      </mat-option>
+    <mat-form-field apperance="fill" style="width: 100px">
+      <mat-label>Loser</mat-label>
+      <input type="text" matInput [formControl]="loserControl" [matAutocomplete]="autol" [value]="loser?.userName" />
+      <mat-autocomplete #autol="matAutocomplete" (optionSelected)="loser = $event.option.value">
+        <mat-option *ngFor="let user of filteredLosers | async" [value]="user">
+          {{ user.userName }}
+        </mat-option>
       </mat-autocomplete>
     </mat-form-field>
   </form>
-  <button mat-button (click)="createMatch()"> Confirm</button>
-
+  <button mat-button (click)="createMatch()">Confirm</button>
 </div>

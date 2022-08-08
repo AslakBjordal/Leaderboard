@@ -1,7 +1,7 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { FormArray, FormControl } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { map, Observable, startWith } from 'rxjs';
+import { map, Observable, startWith, switchMap } from 'rxjs';
 import { UserProfile } from 'src/app/models/userprofile.model';
 import { MatchesService } from 'src/app/services/api/matches.service';
 import { UserprofilesService } from 'src/app/services/api/userprofiles.service';
@@ -12,47 +12,53 @@ import { UserprofilesService } from 'src/app/services/api/userprofiles.service';
   styleUrls: ['./newmatch.component.css'],
 })
 export class NewmatchComponent implements OnInit {
-  winner: string;
+  users$ = this.user.getUsers();
+
+  winnerControl = new FormControl('');
+  filteredWinners = this.winnerControl.valueChanges.pipe(
+    startWith(''),
+    switchMap((value) => this._filter(value ?? '')),
+  );
+
+  loserControl = new FormControl('');
+  filteredLosers = this.loserControl.valueChanges.pipe(
+    startWith(''),
+    switchMap((value) => this._filter(value ?? '')),
+  );
+
+  winner: UserProfile;
   winnerId: number;
-  loser: string;
+  loser: UserProfile;
   loserId: number;
-  users = this.user.getUsers().value;
   filteredUsers: Observable<string[]>;
-  myControl = new FormControl('');
-  userNames: string[] = this.users.map(res => res.userName);
-  Today = new Date()
+  Today = new Date();
+
   constructor(
     private dialogRef: MatDialogRef<NewmatchComponent>,
     private match: MatchesService,
-    private user: UserprofilesService
+    private user: UserprofilesService,
   ) {}
 
   onNoClick = () => {
     this.dialogRef.close({ winner: this.winner, loser: this.loser });
   };
 
-  ngOnInit(): void {
-    this.filteredUsers = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map((value) => 
-      this._filter(value || '')),
-      );
-    }
-    
-    private _filter(name: string): string[] {
-      const filterValue = name.toLowerCase();
-      
-      return this.userNames.filter((option) =>
-      option.toLowerCase().includes(filterValue)
-      );
-    }
-    
-    createMatch = () => {
-      this.winnerId = this.users.find(res => res.userName == this.winner)?.id || 1000;
+  ngOnInit(): void {}
 
-      this.loserId = this.users.find(res => res.userName == this.loser)?.id || 1000;
-      
-      this.match.createMatch({id: 0, winner: this.winnerId, loser: this.loserId, date: Number(this.Today)});
-    };
+  private _filter(name: string | UserProfile) {
+    if (typeof name !== 'string') return this.users$;
 
+    const filterValue = name.toLowerCase();
+
+    return this.users$.pipe(
+      map((users) => users.filter((option) => option.userName.toLowerCase().includes(filterValue))),
+    );
+  }
+
+  createMatch = () => {
+    const winnerId = this.winner.id ?? 69;
+    const loserId = this.loser.id ?? 69;
+
+    this.match.createMatch({ id: 0, winner: winnerId, loser: loserId, date: Number(this.Today) });
+  };
 }
