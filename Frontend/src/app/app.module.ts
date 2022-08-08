@@ -15,13 +15,14 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SidenavService } from './services/sidenav.service';
 import { ReactiveComponentModule } from '@ngrx/component';
 import { NewmatchComponent } from './components/newmatch/newmatch.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { UserprofilesService } from './services/api/userprofiles.service';
 
 @NgModule({
   declarations: [
@@ -47,8 +48,9 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatSidenavModule,
     ReactiveComponentModule,
     MatAutocompleteModule,
+    ReactiveFormsModule,
   ],
-  providers: [SidenavService],
+  providers: [SidenavService,UserprofilesService ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   bootstrap: [AppComponent],
 })

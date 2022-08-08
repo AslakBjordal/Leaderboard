@@ -1,10 +1,11 @@
 <h1 mat-dialog-title>Register a new match</h1>
 <div
   mat-dialog-content
-  style="display: flex; flex-direction: row; justify-content: space-evenly"
+  style="display: flex; flex-direction: column; justify-content: space-between"
 >
   <p>Please write name of the winner and the loser</p>
 
+  <form>
   <mat-form-field apperance="fill" style="width: 100px">
     <mat-label> Winner</mat-label>
     <input
@@ -13,15 +14,30 @@
       [formControl]="myControl"
       [matAutocomplete]="auto"
     />
-    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-      <mat-option *ngFor="let user of filteredUsers | async" [value]="user">
-        {{ user.userName }}
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let user of filteredUsers | async" [value]="winner">
+        {{ user }}
       </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
 
+  <form>
   <mat-form-field apperance="fill" style="width: 100px">
     <mat-label> Loser</mat-label>
-    <input matInput [(ngModel)]="loser" />
-  </mat-form-field>
+    <input
+      type="text"
+      matInput
+      [formControl]="myControl"
+      [matAutocomplete]="auto"
+    />
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let user of filteredUsers | async" [value]="loser">
+        {{ user }}
+      </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+  <button mat-button (click)="createMatch()"> Confirm</button>
+
 </div>

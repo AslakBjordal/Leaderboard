@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, Injectable, OnInit } from '@angular/core';
+import { FormArray, FormControl } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { map, Observable, startWith } from 'rxjs';
 import { UserProfile } from 'src/app/models/userprofile.model';
@@ -13,11 +13,14 @@ import { UserprofilesService } from 'src/app/services/api/userprofiles.service';
 })
 export class NewmatchComponent implements OnInit {
   winner: string;
+  winnerId: number;
   loser: string;
-  users: UserProfile[];
-  myControl = new FormControl<string | UserProfile>('');
-  filteredUsers: Observable<UserProfile[]>;
-
+  loserId: number;
+  users = this.user.getUsers().value;
+  filteredUsers: Observable<string[]>;
+  myControl = new FormControl('');
+  userNames: string[] = this.users.map(res => res.userName);
+  Today = new Date()
   constructor(
     private dialogRef: MatDialogRef<NewmatchComponent>,
     private match: MatchesService,
@@ -28,27 +31,28 @@ export class NewmatchComponent implements OnInit {
     this.dialogRef.close({ winner: this.winner, loser: this.loser });
   };
 
-  createMatch = () => {};
   ngOnInit(): void {
-    this.user.getUsers().subscribe((res) => (this.users = res));
     this.filteredUsers = this.myControl.valueChanges.pipe(
       startWith(''),
-      map((value) => {
-        const userName = typeof value === 'string' ? value : value?.userName;
-        return userName ? this._filter(userName as string) : this.users.slice();
-      })
-    );
-  }
+      map((value) => 
+      this._filter(value || '')),
+      );
+    }
+    
+    private _filter(name: string): string[] {
+      const filterValue = name.toLowerCase();
+      
+      return this.userNames.filter((option) =>
+      option.toLowerCase().includes(filterValue)
+      );
+    }
+    
+    createMatch = () => {
+      this.winnerId = this.users.find(res => res.userName == this.winner)?.id || 1000;
 
-  displayFn(user: UserProfile): string {
-    return user && user.userName ? user.userName : '';
-  }
+      this.loserId = this.users.find(res => res.userName == this.loser)?.id || 1000;
+      
+      this.match.createMatch({id: 0, winner: this.winnerId, loser: this.loserId, date: Number(this.Today)});
+    };
 
-  private _filter(name: string): UserProfile[] {
-    const filterValue = name.toLowerCase();
-
-    return this.users.filter((option) =>
-      option.userName.toLowerCase().includes(filterValue)
-    );
-  }
 }
