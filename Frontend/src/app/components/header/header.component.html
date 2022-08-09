@@ -3,6 +3,7 @@
   <div class="btns" *ngrxLet="menuOpen$ | async as open">
     <app-button
       color="#1100ff"
+      *ngIf="currentUser$ | async"
       text="New Match"
       (btnClick)="newMatch()"
     ></app-button>

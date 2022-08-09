@@ -23,6 +23,10 @@ import { ReactiveComponentModule } from '@ngrx/component';
 import { NewmatchComponent } from './components/newmatch/newmatch.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { UserprofilesService } from './services/api/userprofiles.service';
+import { MatDatepickerModule,} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatTabsModule} from '@angular/material/tabs';
+
 
 @NgModule({
   declarations: [
@@ -49,6 +53,9 @@ import { UserprofilesService } from './services/api/userprofiles.service';
     ReactiveComponentModule,
     MatAutocompleteModule,
     ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatTabsModule,
   ],
   providers: [SidenavService,UserprofilesService ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],

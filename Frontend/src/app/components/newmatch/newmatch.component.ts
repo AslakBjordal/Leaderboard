@@ -31,7 +31,8 @@ export class NewmatchComponent implements OnInit {
   loser: UserProfile;
   loserId: number;
   filteredUsers: Observable<string[]>;
-  Today = new Date();
+  Today = new FormControl(new Date());
+  serializedToday = new FormControl(new Date().toISOString);
 
   constructor(
     private dialogRef: MatDialogRef<NewmatchComponent>,
@@ -58,7 +59,11 @@ export class NewmatchComponent implements OnInit {
   createMatch = () => {
     const winnerId = this.winner.id ?? 69;
     const loserId = this.loser.id ?? 69;
+    console.log(winnerId + " this is winner");
+    console.log(loserId + " this is loser");
 
-    this.match.createMatch({ id: 0, winner: winnerId, loser: loserId, date: Number(this.Today) });
+    this.match.createMatch({ id: 0, winner: winnerId, loser: loserId, date: this.Today.value?.getTime()?? 0 }).subscribe(res=> console.log(res));
+    window.location.reload();
+    this.onNoClick()
   };
 }

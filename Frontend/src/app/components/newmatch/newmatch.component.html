@@ -25,5 +25,13 @@
       </mat-autocomplete>
     </mat-form-field>
   </form>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Choose Date</mat-label>
+    <input matInput [matDatepicker]="picker3" [value]="Today.value">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+    <mat-datepicker #picker3></mat-datepicker>
+  </mat-form-field>
   <button mat-button (click)="createMatch()">Confirm</button>
 </div>

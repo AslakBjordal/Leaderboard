@@ -22,4 +22,9 @@ export class MatchesItemComponent implements OnInit {
     this.users$.pipe(
       map((users) => users.find((user) => user.id === userId)?.userName)
     );
+
+  getDate = (match:Match) => {
+    return new Date(match.date);
+  }
+
 }
