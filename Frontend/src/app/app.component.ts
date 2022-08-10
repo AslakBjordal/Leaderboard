@@ -26,7 +26,7 @@ export class AppComponent {
   setMenuOpen = (open: boolean) => this.sidenavService.setIsOpen(open);
 
   logOut = () => {
-    this.auth.logOut().subscribe((res) => console.log(res));
-    window.location.reload();
+    this.auth.logOut().subscribe((res) => {console.log(res)
+      window.location.reload();});
   };
 }

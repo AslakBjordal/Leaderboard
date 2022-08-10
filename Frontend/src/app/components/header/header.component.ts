@@ -15,7 +15,7 @@ import { NewmatchComponent } from '../newmatch/newmatch.component';
 export class HeaderComponent implements OnInit {
   menuOpen$ = this.sidenavService.getIsOpen();
 
-  title: string = 'UIT 8BALL';
+  title: string = 'UIT 8-POOL';
   loggedInUser: UserProfile | undefined;
   currentUser$ = this.users.getCurrentUser();
   constructor(

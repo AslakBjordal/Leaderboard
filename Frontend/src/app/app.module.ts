@@ -26,6 +26,8 @@ import { UserprofilesService } from './services/api/userprofiles.service';
 import { MatDatepickerModule,} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatTabsModule} from '@angular/material/tabs';
+import { ScoreboardComponent } from './components/scoreboard/scoreboard.component';
+import { ScoreboardItemComponent } from './components/scoreboard-item/scoreboard-item.component';
 
 
 @NgModule({
@@ -37,6 +39,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatchesItemComponent,
     LoginMenuComponent,
     NewmatchComponent,
+    ScoreboardComponent,
+    ScoreboardItemComponent,
   ],
   imports: [
     BrowserModule,

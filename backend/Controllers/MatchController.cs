@@ -25,7 +25,7 @@ public class MatchesController : ControllerBase
   public IEnumerable<Matches> GetMatches()
   {
     using var connection = new SqliteConnection(_db.Name);
-    var matches = connection.Query<Matches>("SELECT * FROM Matches;");
+    var matches = connection.Query<Matches>("SELECT * FROM Matches ORDER BY date DESC;");
     return matches;
   }
 
@@ -69,7 +69,7 @@ public class MatchesController : ControllerBase
   [HttpGet("Score")]
   public IEnumerable<IdToScore> GetScore(){
     using var connection = new SqliteConnection(_db.Name);
-    var score = connection.Query<IdToScore>(@"SELECT Winner AS ID, COUNT(*) as Score from Matches GROUP BY winner");
+    var score = connection.Query<IdToScore>(@"SELECT Winner AS ID, COUNT(*) as Score from Matches GROUP BY winner ORDER BY score DESC");
     return score;
   }
 }

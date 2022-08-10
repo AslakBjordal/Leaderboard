@@ -1,0 +1,6 @@
+<div *ngFor="let score of scores$ | async">
+    <app-scoreboard-item 
+    id="scorebox" 
+    [score]="score">
+    </app-scoreboard-item>
+</div> 

@@ -1,0 +1,18 @@
+.scoreitem{
+    width: 75%;
+    color: white;
+    background-color: #303035;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+}
+
+#Id{
+    width: 80px;
+}
+
+#Score{
+    width: 80px;
+}
+

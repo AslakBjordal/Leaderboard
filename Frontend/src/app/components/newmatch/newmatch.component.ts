@@ -62,8 +62,8 @@ export class NewmatchComponent implements OnInit {
     console.log(winnerId + " this is winner");
     console.log(loserId + " this is loser");
 
-    this.match.createMatch({ id: 0, winner: winnerId, loser: loserId, date: this.Today.value?.getTime()?? 0 }).subscribe(res=> console.log(res));
-    window.location.reload();
+    this.match.createMatch({ id: 0, winner: winnerId, loser: loserId, date: this.Today.value?.getTime()?? 0 }).subscribe(res=> {console.log(res)
+      window.location.reload();});
     this.onNoClick()
   };
 }
