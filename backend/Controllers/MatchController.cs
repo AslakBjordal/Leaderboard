@@ -65,4 +65,11 @@ public class MatchesController : ControllerBase
 
     return res == 1;
   }
+
+  [HttpGet("Score")]
+  public IEnumerable<IdToScore> GetScore(){
+    using var connection = new SqliteConnection(_db.Name);
+    var score = connection.Query<IdToScore>(@"SELECT Winner AS ID, COUNT(*) as Score from Matches GROUP BY winner");
+    return score;
+  }
 }
