@@ -37,6 +37,8 @@ export class ScoreboardComponent implements OnInit {
 
     this.firstDayOfMonth = new Date(this.current.getFullYear(), this.current.getMonth(), 1);
     this.LastDayOfMonth = new Date(this.current.getFullYear(), this.current.getMonth() + 1, 0);
+    this.firstDayOfMonth.setHours(0,0,0,0);
+    this.LastDayOfMonth.setHours(0,0,0,0);
     this.scoresMonthly$ = this.matchesService.getScoreFiltered(this.firstDayOfMonth.getTime(),this.LastDayOfMonth.getTime());
 
     this.scoresAlltime$ = this.matchesService.getScore();
