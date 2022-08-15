@@ -17,4 +17,7 @@ export class MatchesService {
 
   getScore = (): Observable<IdToScore[]> => 
     this.baseApi.get<IdToScore[]>('matches/score');
+
+  getScoreFiltered = (start?:number, end?:number): Observable<IdToScore[]> => 
+    this.baseApi.get<IdToScore[]>('matches/score/filtered?',{DateStart : start, DateEnd : end});
 }

@@ -1,4 +1,4 @@
-<div *ngFor="let score of scores$ | async">
+<div *ngFor="let score of timeframes[type] | async">
     <app-scoreboard-item 
     id="scorebox" 
     [score]="score">

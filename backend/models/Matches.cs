@@ -16,5 +16,6 @@ namespace LeaderBoard.Models
     public int Loser { get; set; }
 
     public long date { get; set; }
+    
   }
 }

@@ -17,9 +17,9 @@
       <app-header></app-header>
       <mat-tab-group mat-align-tabs="center" [backgroundColor]="'primary'">
         <mat-tab label="Previous Matches"> <app-matches></app-matches> </mat-tab>
-        <mat-tab label="Weekly"> <app-scoreboard></app-scoreboard> </mat-tab>
-        <mat-tab label="Monthly"> Content 3 </mat-tab>
-        <mat-tab label="All time"> Content 4</mat-tab>
+        <mat-tab label="Weekly"> <app-scoreboard [type] = "0" ></app-scoreboard> </mat-tab>
+        <mat-tab label="Monthly"><app-scoreboard [type] = "1" ></app-scoreboard>  </mat-tab>
+        <mat-tab label="All time"><app-scoreboard [type] = "2" ></app-scoreboard></mat-tab>
       </mat-tab-group>
     </div>
   </mat-drawer-content>

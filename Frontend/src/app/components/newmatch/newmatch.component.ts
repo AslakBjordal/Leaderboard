@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, Injectable, OnInit } from '@angular/core';
 import { FormArray, FormControl } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -32,7 +33,6 @@ export class NewmatchComponent implements OnInit {
   loserId: number;
   filteredUsers: Observable<string[]>;
   Today = new FormControl(new Date());
-  serializedToday = new FormControl(new Date().toISOString);
 
   constructor(
     private dialogRef: MatDialogRef<NewmatchComponent>,
@@ -44,11 +44,12 @@ export class NewmatchComponent implements OnInit {
     this.dialogRef.close({ winner: this.winner, loser: this.loser });
   };
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+  }
 
   private _filter(name: string | UserProfile) {
     if (typeof name !== 'string') return this.users$;
-
     const filterValue = name.toLowerCase();
 
     return this.users$.pipe(
@@ -62,7 +63,7 @@ export class NewmatchComponent implements OnInit {
     console.log(winnerId + " this is winner");
     console.log(loserId + " this is loser");
 
-    this.match.createMatch({ id: 0, winner: winnerId, loser: loserId, date: this.Today.value?.getTime()?? 0 }).subscribe(res=> {console.log(res)
+    this.match.createMatch({ id: 0, winner: winnerId, loser: loserId, date: this.Today.value?.getTime()?? 0}).subscribe(res=> {console.log(res)
       window.location.reload();});
     this.onNoClick()
   };
