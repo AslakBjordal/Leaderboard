@@ -1,5 +1,24 @@
+#container{
+    height: 91vh;
+    background-color: black;
+}
 #scorebox{
     padding-top: 1rem;
     display: flex;
     justify-content: center;
+}
+
+
+#titlebox{
+    display: flex;
+    justify-content: center;
+    padding-top: 0.3cm;
+    padding-right: 1cm;
+}
+
+#title{
+    width: 75%;
+    color: white;
+    display: flex;
+    justify-content: space-around;
 }

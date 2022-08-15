@@ -1,5 +1,40 @@
+#container {
+    height: 91vh;
+    background-color: black;
+}
+
 #matchbox{
     padding-top: 1rem;
     display: flex;
     justify-content: center;
+}
+
+#titlebox{
+    padding-top: 0.3cm;
+    display: flex;
+    justify-content: center;
+}
+
+#title{
+    width: 89%;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+}
+
+#player1{
+    width: 100px;
+
+}
+
+#player2{
+    width: 100px;
+}
+
+#date{
+    width: 100px;
+}
+
+#winner{
+    width: 100px;
 }

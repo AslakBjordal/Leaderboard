@@ -1,7 +1,18 @@
-<div *ngFor="let match of matches$ | async">
-    <app-matches-item 
-    id="matchbox" 
-    [match]="match"
-    >
-    </app-matches-item>
-</div> 
+<div id="container">
+    <div id="titlebox">
+        <div id="title">
+            <p id="player1">PLAYER 1</p>
+            <p id="player2">PLAYER 2</p>
+            <p id="date">DATE</p>
+            <p id="winner">WINNER</p>
+        </div>
+    </div>
+
+    <div *ngFor="let match of matches$ | async">
+        <app-matches-item 
+        id="matchbox" 
+        [match]="match"
+        >
+        </app-matches-item>
+    </div> 
+</div>

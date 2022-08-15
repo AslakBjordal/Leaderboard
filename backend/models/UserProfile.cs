@@ -14,7 +14,7 @@ namespace LeaderBoard.Models
         [Key]
         public int Id {get; set;}
 
-        [Column(TypeName = "nvarchar(30)")]
+        [Column(TypeName = "nvarchar(10)")]
         public string UserName {get; set;} = string.Empty;
 
         [Column(TypeName = "nvarchar(30)")]
