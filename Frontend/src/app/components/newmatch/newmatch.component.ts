@@ -1,6 +1,7 @@
 import { formatDate } from '@angular/common';
 import { Component, Injectable, OnInit } from '@angular/core';
 import { FormArray, FormControl } from '@angular/forms';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatDialogRef } from '@angular/material/dialog';
 import { map, Observable, startWith, switchMap } from 'rxjs';
 import { UserProfile } from 'src/app/models/userprofile.model';
@@ -33,7 +34,7 @@ export class NewmatchComponent implements OnInit {
   loserId: number;
   filteredUsers: Observable<string[]>;
   Today = new FormControl(new Date());
-
+  pickedDate : Date;
   constructor(
     private dialogRef: MatDialogRef<NewmatchComponent>,
     private match: MatchesService,
@@ -47,23 +48,25 @@ export class NewmatchComponent implements OnInit {
   ngOnInit(): void {
 
   }
+  onDateChange = (event: MatDatepickerInputEvent<Date>) =>{
+    this.pickedDate = event.value ?? new Date();
+  }
 
   private _filter(name: string | UserProfile) {
     if (typeof name !== 'string') return this.users$;
     const filterValue = name.toLowerCase();
 
     return this.users$.pipe(
-      map((users) => users.filter((option) => option.userName.toLowerCase().includes(filterValue))),
+      map((users) => users.filter((option) => option.userName.includes(filterValue))),
     );
   }
 
   createMatch = () => {
     const winnerId = this.winner.id ?? 69;
     const loserId = this.loser.id ?? 69;
-    console.log(winnerId + " this is winner");
-    console.log(loserId + " this is loser");
-
-    this.match.createMatch({ id: 0, winner: winnerId, loser: loserId, date: this.Today.value?.getTime()?? 0}).subscribe(res=> {console.log(res)
+    console.log(this.pickedDate + " this is date");
+    this.pickedDate.setHours(0,0,0,0);
+    this.match.createMatch({ id: 0, winner: winnerId, loser: loserId, date: this.pickedDate.getTime()}).subscribe(res=> {console.log(res)
       window.location.reload();});
     this.onNoClick()
   };
