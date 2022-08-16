@@ -3,6 +3,7 @@ import { Component, Injectable, OnInit } from '@angular/core';
 import { FormArray, FormControl } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatDialogRef } from '@angular/material/dialog';
+import { faL } from '@fortawesome/free-solid-svg-icons';
 import { map, Observable, startWith, switchMap } from 'rxjs';
 import { UserProfile } from 'src/app/models/userprofile.model';
 import { MatchesService } from 'src/app/services/api/matches.service';
@@ -35,6 +36,9 @@ export class NewmatchComponent implements OnInit {
   filteredUsers: Observable<string[]>;
   Today = new FormControl(new Date());
   pickedDate : Date;
+  changed: boolean;
+
+
   constructor(
     private dialogRef: MatDialogRef<NewmatchComponent>,
     private match: MatchesService,
@@ -46,10 +50,14 @@ export class NewmatchComponent implements OnInit {
   };
 
   ngOnInit(): void {
-
+    this.changed = false;
   }
+
+  
   onDateChange = (event: MatDatepickerInputEvent<Date>) =>{
     this.pickedDate = event.value ?? new Date();
+    this.changed = true;
+    
   }
 
   private _filter(name: string | UserProfile) {
@@ -64,10 +72,14 @@ export class NewmatchComponent implements OnInit {
   createMatch = () => {
     const winnerId = this.winner.id ?? 69;
     const loserId = this.loser.id ?? 69;
-    console.log(this.pickedDate + " this is date");
-    this.pickedDate.setHours(0,0,0,0);
-    this.match.createMatch({ id: 0, winner: winnerId, loser: loserId, date: this.pickedDate.getTime()}).subscribe(res=> {console.log(res)
-      window.location.reload();});
+    if (this.changed == true) {
+      this.match.createMatch({ id: 0, winner: winnerId, loser: loserId, date: this.pickedDate.getTime()}).subscribe(res=> {console.log(res)
+        window.location.reload();});
+    }
+    else {
+      this.match.createMatch({ id: 0, winner: winnerId, loser: loserId, date: this.Today.value?.getTime()??0}).subscribe(res=> {console.log(res)
+        window.location.reload();});
+    }
     this.onNoClick()
   };
 }
