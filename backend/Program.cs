@@ -47,7 +47,8 @@ app.UseAuthentication();
 app.UseCors(builder =>
 {
   builder
-  .WithOrigins("https://localhost:4200")
+  .WithOrigins("https://8ball.bjordal.tech/")
+
   .AllowAnyHeader()
   .AllowCredentials()
   .AllowAnyMethod();
