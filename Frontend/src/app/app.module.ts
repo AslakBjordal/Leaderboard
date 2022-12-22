@@ -19,7 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SidenavService } from './services/sidenav.service';
-import { ReactiveComponentModule } from '@ngrx/component';
+import { LetModule, PushModule } from '@ngrx/component';
 import { NewmatchComponent } from './components/newmatch/newmatch.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { UserprofilesService } from './services/api/userprofiles.service';
@@ -54,7 +54,7 @@ import { ScoreboardItemComponent } from './components/scoreboard-item/scoreboard
     FormsModule,
     MatButtonModule,
     MatSidenavModule,
-    ReactiveComponentModule,
+    LetModule,PushModule,
     MatAutocompleteModule,
     ReactiveFormsModule,
     MatDatepickerModule,
