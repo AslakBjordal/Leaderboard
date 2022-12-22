@@ -19,6 +19,7 @@ builder.Services.AddHostedService<DatabaseHostedService>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
 {
   options.Cookie.SameSite = SameSiteMode.None;
+  options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
   options.LoginPath = new PathString("/Authentication/Login");
   options.SlidingExpiration = true;
   options.Events.OnRedirectToLogin = context =>
