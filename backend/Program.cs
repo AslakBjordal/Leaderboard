@@ -32,11 +32,11 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-// if (app.Environment.IsDevelopment())
-// {
+ if (app.Environment.IsDevelopment())
+ {
   app.UseSwaggerUI();
   app.UseSwagger();
-// }
+ }
 
 
 app.UseHttpsRedirection();
@@ -47,8 +47,11 @@ app.UseAuthentication();
 app.UseCors(builder =>
 {
   builder
+#if DEBUG  
   .WithOrigins("http://localhost:8080")
-  //.WithOrigins("https://8ball.bjordal.tech")
+#else  
+  .WithOrigins("https://8ball.bjordal.tech")
+#endif
   .AllowAnyHeader()
   .AllowCredentials()
   .AllowAnyMethod();
