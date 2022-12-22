@@ -15,7 +15,6 @@ export class ScoreboardItemComponent implements OnInit {
   constructor(private userService: UserprofilesService) {}
 
   ngOnInit(): void {
-    console.log(this.score)
   }
   getUser = (userId: number) =>
     this.users$.pipe(

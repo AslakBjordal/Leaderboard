@@ -22,7 +22,8 @@ namespace LeaderBoard.Database
             CREATE TABLE IF NOT EXISTS UserProfiles (
                 Id INTEGER PRIMARY KEY AUTOINCREMENT,
                 UserName VARCHAR(30) NOT NULL,
-                Password VARCHAR(30) NOT NULL
+                Password VARCHAR(30) NOT NULL,
+                Elo INTEGER
             );
 
             CREATE TABLE IF NOT EXISTS Matches (

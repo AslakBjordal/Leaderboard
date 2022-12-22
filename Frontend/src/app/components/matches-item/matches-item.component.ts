@@ -15,7 +15,6 @@ export class MatchesItemComponent implements OnInit {
   constructor(private userService: UserprofilesService) {}
 
   ngOnInit(): void {
-    console.log(this.match);
   }
 
   getUser = (userId: number) =>

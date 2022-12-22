@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  frontend:
+    build: 
+      context: Frontend
+      dockerfile: .docker/Dockerfile
+    ports:
+      - 8080:80
+
+  backend:
+    build: 
+      context: backend
+      dockerfile: .docker/Dockerfile
+    volumes:
+      - type: bind
+        source: ./backend/db.sqlite
+        target: /app/db.sqlite
+    ports:
+      - 5001:5000
+

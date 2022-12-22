@@ -8,16 +8,14 @@ namespace backend.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class MatchesController : ControllerBase
+public class MatchesController : BaseController
 {
   private readonly ILogger<MatchesController> _logger;
-  private readonly DatabaseConfig _db;
 
 
-  public MatchesController(ILogger<MatchesController> logger, DatabaseConfig config)
+  public MatchesController(ILogger<MatchesController> logger, DatabaseConfig config) : base(config)
   {
     _logger = logger;
-    _db = config;
   }
 
   [HttpGet]
@@ -31,6 +29,7 @@ public class MatchesController : ControllerBase
   [HttpPost]
   public bool CreateMatch(Matches match)
   {
+
     using var connection = new SqliteConnection(_db.Name);
 
     var res = connection.Execute(@"
@@ -48,8 +47,14 @@ public class MatchesController : ControllerBase
           Winner = match.Winner,
           Loser = match.Loser,
           Date = match.date,
-        });
+        });    
 
+      UserProfile Winner = getUser(match.Winner);
+      UserProfile Loser = getUser(match.Loser);
+      int winnerElo = Helper.CalculateNewElo(Winner,Loser,1);
+      int loserElo = Helper.CalculateNewElo(Loser,Winner,0);
+      BaseUpdateElo(match.Winner,winnerElo);
+      BaseUpdateElo(match.Loser,loserElo);
     return res == 1;
   }
 

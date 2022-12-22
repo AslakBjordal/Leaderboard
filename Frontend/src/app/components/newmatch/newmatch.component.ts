@@ -1,9 +1,7 @@
-import { formatDate } from '@angular/common';
 import { Component, Injectable, OnInit } from '@angular/core';
 import { FormArray, FormControl } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatDialogRef } from '@angular/material/dialog';
-import { faL } from '@fortawesome/free-solid-svg-icons';
 import { map, Observable, startWith, switchMap } from 'rxjs';
 import { UserProfile } from 'src/app/models/userprofile.model';
 import { MatchesService } from 'src/app/services/api/matches.service';
@@ -68,17 +66,21 @@ export class NewmatchComponent implements OnInit {
       map((users) => users.filter((option) => option.userName.includes(filterValue))),
     );
   }
-
+ 
   createMatch = () => {
     const winnerId = this.winner.id ?? 69;
     const loserId = this.loser.id ?? 69;
+
     if (this.changed == true) {
       this.match.createMatch({ id: 0, winner: winnerId, loser: loserId, date: this.pickedDate.getTime()}).subscribe(res=> {console.log(res)
         window.location.reload();});
     }
     else {
+      //create match
       this.match.createMatch({ id: 0, winner: winnerId, loser: loserId, date: this.Today.value?.getTime()??0}).subscribe(res=> {console.log(res)
         window.location.reload();});
+
+     
     }
     this.onNoClick()
   };

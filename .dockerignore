@@ -1,0 +1,11 @@
+Frontend/.angular
+Frontend/node_modules
+Frontend/dist
+
+
+
+
+backend/bin
+backend/obj
+backend/.vscode
+backend/db.sqlite

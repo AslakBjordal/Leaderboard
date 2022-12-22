@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseApi: 'https://8ball.bjordal.tech:7099/'
+  //baseApi: 'https://8ball.bjordal.tech:7099/'
+  baseApi: 'https://localhost:7099/'
 };
 
 /*

@@ -15,6 +15,8 @@ export class LoginMenuComponent {
 
   error = false;
   createError = false;
+  shortPassword = false;
+  shortName = false;
   created = false;
 
   constructor(
@@ -44,18 +46,30 @@ export class LoginMenuComponent {
   }
 
   register() {
-    this.userService
+    if (this.username.length < 3) {
+       this.shortName = true;
+    }
+    else if(this.password.length <=2) {
+      this.shortPassword = true;
+    }
+    else{
+
+      this.userService
       .createUser({
         userName: this.username?.toLowerCase(),
         password: this.password,
+        elo: 1500,
       })
       .subscribe((res) => {
         if (res) {
           this.created = true;
+          this.shortName = false;
+          this.shortPassword = false;
           this.error = false;
         } else {
           this.createError = true;
         }
       });
+    }
   }
 }

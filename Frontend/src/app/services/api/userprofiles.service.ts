@@ -36,4 +36,8 @@ export class UserprofilesService {
         return user;
       })
     );
+
+  UpdateUserElo = (userId:UserProfile["id"],newscore:number) => {
+    this.baseApi.put<UserProfile>('Users',userId,newscore);
+  }
 }

@@ -19,5 +19,7 @@ namespace LeaderBoard.Models
 
         [Column(TypeName = "nvarchar(30)")]
         public string Password {internal get; set;} = string.Empty;
+
+        public int Elo {get; set;}
     }
 }

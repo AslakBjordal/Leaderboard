@@ -12,16 +12,14 @@ namespace backend.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class AuthenticationController : Controller
+public class AuthenticationController : BaseController
 {
   private readonly ILogger<AuthenticationController> _logger;
-  private readonly DatabaseConfig _db;
 
 
-  public AuthenticationController(ILogger<AuthenticationController> logger, DatabaseConfig config)
+  public AuthenticationController(ILogger<AuthenticationController> logger, DatabaseConfig config) : base(config)
   {
     _logger = logger;
-    _db = config;
   }
 
   [HttpGet("IsLoggedIn")]

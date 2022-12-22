@@ -20,7 +20,5 @@ export class MatchesComponent implements OnInit {
   ngOnInit(): void {
     const d = new Date();
     const num = d.getTime();
-    console.log(d);
-    console.log(num);
   }
 }

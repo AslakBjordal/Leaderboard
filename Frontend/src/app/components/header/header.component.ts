@@ -30,11 +30,11 @@ export class HeaderComponent implements OnInit {
         users.setCurrentUser(res);
       }
     });
-    users.getUsers().subscribe((res) => console.log(res));
+    users.getUsers().subscribe();
+    //add console.log(res) for testing
   }
 
   setMenuOpen = (open: boolean) => {
-    console.log(open);
     this.sidenavService.setIsOpen(open);
   };
 

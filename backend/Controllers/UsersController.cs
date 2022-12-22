@@ -9,16 +9,14 @@ namespace backend.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class UsersController : ControllerBase
+public class UsersController : BaseController
 {
   private readonly ILogger<UsersController> _logger;
-  private readonly DatabaseConfig _db;
 
 
-  public UsersController(ILogger<UsersController> logger, DatabaseConfig config)
+  public UsersController(ILogger<UsersController> logger, DatabaseConfig config) : base(config)
   {
     _logger = logger;
-    _db = config;
   }
 
   [HttpGet]
@@ -45,20 +43,27 @@ public class UsersController : ControllerBase
       var res = connection.Execute(@"
                 INSERT INTO UserProfiles (
                     UserName,
-                    Password
+                    Password,
+                    Elo
                 ) VALUES (
                     @UserName,
-                    @Password
+                    @Password,
+                    @Elo
                 );",
           new
           {
             UserName = user.UserName,
-            Password = Helper.ComputeSHA256Hash(user.Password)
+            Password = Helper.ComputeSHA256Hash(user.Password),
+            Elo = user.Elo
           }
       );
       return res == 1;
     }
 
     return false;
+  }
+  [HttpPut]
+  public bool UpdateElo(int UserId, int score){
+    return BaseUpdateElo(UserId, score);
   }
 }

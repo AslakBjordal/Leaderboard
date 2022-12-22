@@ -15,6 +15,12 @@
   <mat-error *ngIf="createError"
     >This user already exists, try another name.</mat-error
   >
+  <mat-error *ngIf="shortName"
+    >Username is too short, try another name.</mat-error
+  >
+  <mat-error *ngIf="shortPassword"
+    >Password is too short, try another Password.</mat-error
+  >
   <p *ngIf="created" style="color: green">User created :)</p>
 </div>
 
