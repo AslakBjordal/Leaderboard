@@ -6,6 +6,10 @@ services:
       dockerfile: .docker/Dockerfile
     ports:
       - 8080:80
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.leaderboard.rule=Host(`8ball.bjordal.tech`)"
+      - "traefik.http.services.leaderboard.loadbalancer.server.port=80"
 
   backend:
     build: 
@@ -17,4 +21,8 @@ services:
         target: /app/db.sqlite
     ports:
       - 5001:5000
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.leaderboard.rule=Host(`api.8ball.bjordal.tech`)"
+      - "traefik.http.services.leaderboard.loadbalancer.server.port=5000"
 
