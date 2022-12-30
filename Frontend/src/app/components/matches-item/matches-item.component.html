@@ -1,6 +1,6 @@
 <div class="matchitem" >
-    <p id="player1">{{ (getUser(match.winner) | async )?.toUpperCase()}}</p>
-    <p id="player2">{{ (getUser(match.loser) | async)?.toUpperCase() }}</p>
+    <p id="player1">{{ (getUser(match.winner) | async )?.userName?.toUpperCase()}}({{match.winnerElo}})</p>
+    <p id="player2">{{ (getUser(match.loser) | async)?.userName?.toUpperCase()}}({{match.loserElo}})</p>
     <p id="date">{{ getDate(match)|date}}</p>
-    <p id="winner">{{(getUser(match.winner)| async)?.toUpperCase()}}</p>
+    <p id="winner">{{(getUser(match.winner)| async)?.userName?.toUpperCase()}}</p>
 </div>

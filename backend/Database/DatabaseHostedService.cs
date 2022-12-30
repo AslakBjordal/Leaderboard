@@ -29,7 +29,9 @@ namespace LeaderBoard.Database
             CREATE TABLE IF NOT EXISTS Matches (
                 Id INTEGER PRIMARY KEY AUTOINCREMENT,
                 Winner INT,
+                WinnerElo INT,
                 Loser INT,
+                LoserElo INT,
                 Date INT NOT NULL,
                 FOREIGN KEY(Winner) REFERENCES UserProfiles(Id),
                 FOREIGN KEY(Loser) REFERENCES UserProfiles(Id)

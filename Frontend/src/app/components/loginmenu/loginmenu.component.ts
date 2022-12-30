@@ -39,6 +39,7 @@ export class LoginMenuComponent {
         if (res) {
           this.userService.setCurrentUser(res);
           this.dialogRef.close();
+          window.location.reload();
         } else {
           this.error = true;
         }
@@ -46,6 +47,10 @@ export class LoginMenuComponent {
   }
 
   register() {
+    this.shortName = false;
+    this.shortPassword = false;
+    this.error = false;
+    
     if (this.username.length < 3) {
        this.shortName = true;
     }

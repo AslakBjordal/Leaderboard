@@ -27,9 +27,9 @@ export class NewmatchComponent implements OnInit {
     switchMap((value) => this._filter(value ?? '')),
   );
 
-  winner: UserProfile;
+  winner?: UserProfile;
   winnerId: number;
-  loser: UserProfile;
+  loser?: UserProfile;
   loserId: number;
   filteredUsers: Observable<string[]>;
   Today = new FormControl(new Date());
@@ -68,16 +68,22 @@ export class NewmatchComponent implements OnInit {
   }
  
   createMatch = () => {
-    const winnerId = this.winner.id ?? 69;
-    const loserId = this.loser.id ?? 69;
+    const winnerId = this.winner?.id ?? 69;
+    const loserId = this.loser?.id ?? 69;
 
     if (this.changed == true) {
-      this.match.createMatch({ id: 0, winner: winnerId, loser: loserId, date: this.pickedDate.getTime()}).subscribe(res=> {console.log(res)
+      this.match.createMatch({ id: 0, winner: winnerId, winnerElo: this.winner?.elo??0,
+                                      loser: loserId, loserElo: this.loser?.elo??0,
+                                      date: this.pickedDate.getTime()??0})
+        .subscribe(res=> {console.log(res)
         window.location.reload();});
     }
     else {
       //create match
-      this.match.createMatch({ id: 0, winner: winnerId, loser: loserId, date: this.Today.value?.getTime()??0}).subscribe(res=> {console.log(res)
+      this.match.createMatch({ id: 0, winner: winnerId, winnerElo: this.winner?.elo??0,
+                                      loser: loserId, loserElo:this.loser?.elo??0,
+                                      date: this.Today.value?.getTime()??0})
+        .subscribe(res=> {console.log(res)
         window.location.reload();});
 
      

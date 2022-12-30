@@ -18,6 +18,6 @@ export class ScoreboardItemComponent implements OnInit {
   }
   getUser = (userId: number) =>
     this.users$.pipe(
-      map((users) => users.find((user) => user.id === userId)?.userName)
+      map((users) => users.find((user) => user.id === userId))
     );
 }

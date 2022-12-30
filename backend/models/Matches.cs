@@ -13,7 +13,11 @@ namespace LeaderBoard.Models
     public int Id { get; set; }
     public int Winner { get; set; }
 
+    public int WinnerElo { get; set; }
+
     public int Loser { get; set; }
+
+    public int LoserElo { get; set; }
 
     public long date { get; set; }
     

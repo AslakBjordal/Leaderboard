@@ -1,5 +1,5 @@
 
 <div class="scoreitem" >
-    <p id="Id">{{ (getUser(score.id) | async )?.toUpperCase()}}</p>
+    <p id="Id">{{ (getUser(score.id) | async )?.userName?.toUpperCase()}}({{(getUser(score.id) | async )?.elo}})</p>
     <p id="Score">{{ score.score }}</p>
 </div>

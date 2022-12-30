@@ -8,7 +8,7 @@
       <input type="text" matInput [formControl]="winnerControl" [matAutocomplete]="autow" [value]="winner?.userName" />
       <mat-autocomplete #autow="matAutocomplete" (optionSelected)="winner = $event.option.value">
         <mat-option *ngFor="let user of filteredWinners | async" [value]="user">
-          {{ user.userName }}
+          {{ user?.userName }}
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
@@ -20,7 +20,7 @@
       <input type="text" matInput [formControl]="loserControl" [matAutocomplete]="autol" [value]="loser?.userName" />
       <mat-autocomplete #autol="matAutocomplete" (optionSelected)="loser = $event.option.value">
         <mat-option *ngFor="let user of filteredLosers | async" [value]="user">
-          {{ user.userName }}
+          {{ user?.userName }}
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>

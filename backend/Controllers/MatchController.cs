@@ -35,18 +35,25 @@ public class MatchesController : BaseController
     var res = connection.Execute(@"
             INSERT INTO Matches (
                 Winner,
+                WinnerElo,
                 Loser,
+                LoserElo,
                 Date
             ) VALUES (
                 @Winner,
+                @WinnerElo,
                 @Loser,
+                @LoserElo,
                 @Date
             );",
         new
         {
           Winner = match.Winner,
+          WinnerElo = match.WinnerElo,
           Loser = match.Loser,
+          LoserElo = match.LoserElo,
           Date = match.date,
+
         });    
 
       UserProfile Winner = getUser(match.Winner);

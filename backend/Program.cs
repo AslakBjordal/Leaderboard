@@ -49,7 +49,7 @@ app.UseCors(builder =>
 {
   builder
 #if DEBUG  
-  .WithOrigins("http://localhost:8080")
+  .WithOrigins("https://localhost:4200")
 #else  
   .WithOrigins("https://8ball.bjordal.tech")
 #endif
